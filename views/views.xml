@@ -9,6 +9,7 @@
                 <field name="client_email"/>
                 <field name="client_address"/>
                 <field name="client_city"/>
+                <field name="client_province"/>
             </xpath>
             <xpath expr="//header" position="inside">
                 <button name="update_partner" string="Actualizar Cliente" type="object"/>
