@@ -39,4 +39,10 @@ class SaleOrder(models.Model):
 class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
-    state_ids = fields.Many2many('res.country.state', string='Provincias')
+    state_ids = fields.Many2many('res.country.state', string='Provincias', domain=lambda self: self._get_state_domain())
+
+    def _get_state_domain(self):
+        arg_country = self.env['res.country'].search([('name', '=', 'Argentina')], limit=1)
+        if arg_country:
+            return [('country_id', '=', arg_country.id)]
+        return []
