@@ -24,4 +24,5 @@ class SaleOrder(models.Model):
                     'email': order.client_email,
                     'street': order.client_address,
                     'city': order.client_city,
+                    'state_id': order.client_province,
                 })
