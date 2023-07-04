@@ -16,4 +16,14 @@
             </xpath>
         </field>
     </record>
+     <record id="product_pricelist_view_inherit" model="ir.ui.view">
+            <field name="name">product.pricelist.view.inherit</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="state_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
 </odoo>
