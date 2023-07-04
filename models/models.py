@@ -26,3 +26,17 @@ class SaleOrder(models.Model):
                     'city': order.client_city,
                     'state_id': order.client_province,
                 })
+    
+    @api.onchange('client_province')
+    def _onchange_client_province(self):
+        if self.client_province:
+            pricelist = self.env['product.pricelist'].search([('state_ids', 'in', self.client_province.id)], limit=1)
+            if pricelist:
+                self.pricelist_id = pricelist.id
+            else:
+                self.pricelist_id = False
+
+class ProductPricelist(models.Model):
+    _inherit = 'product.pricelist'
+
+    state_ids = fields.Many2many('res.country.state', string='Provincias')
