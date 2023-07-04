@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
             # Verificar si hay un socio comercial seleccionado
             if order.partner_id:
                 order.partner_id.write({
-                    'phone': order.client_phone,
+                    'mobile': order.client_phone,
                     'email': order.client_email,
                     'street': order.client_address,
                     'city': order.client_city,
