@@ -7,6 +7,13 @@ class SaleOrder(models.Model):
     client_email = fields.Char(string='Email')
     client_address = fields.Char(string='Dirección')
     client_city = fields.Char(string='Ciudad')
+    client_province = fields.Many2one('res.country.state', string='Provincia', domain=lambda self: self._get_province_domain())
+
+    def _get_province_domain(self):
+        arg_country = self.env['res.country'].search([('name', '=', 'Argentina')], limit=1)
+        if arg_country:
+            return [('country_id', '=', arg_country.id)]
+        return []
 
     def update_partner(self):
         for order in self:
