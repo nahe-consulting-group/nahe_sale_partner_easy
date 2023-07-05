@@ -25,6 +25,7 @@ class SaleOrder(models.Model):
                     'street': order.client_address,
                     'city': order.client_city,
                     'state_id': order.client_province,
+                    'property_product_pricelist': order.pricelist_id;
                 })
     
     @api.onchange('client_province')
